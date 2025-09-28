@@ -2,7 +2,7 @@
 run: frontend
     go run .
 
-# Build the application
+# Build the application for the pi
 build_pi: frontend
     mkdir -p output/web
     cp -r web/build output/web/build
