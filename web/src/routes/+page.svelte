@@ -12,8 +12,15 @@
     });
 </script>
 
-<h1>Welcome to SvelteKit</h1>
+<div class="m-5">
+    <div>
+        <h1 class="text-5xl italic underline">Austin Jones</h1>
 
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+        <h4 class="text-m text-right italic">Software Engineer</h4>
+    </div>
+    <p>
+        Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation
+    </p>
 
-<p>The message is: [{message}]</p>
+    <p>The message is: [{message}]</p>
+</div>
