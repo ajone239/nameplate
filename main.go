@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -12,6 +13,8 @@ func main() {
 	api := http.NewServeMux()
 	api.HandleFunc("/api/data", dataHandler)
 	http.Handle("/api/", api)
+
+	fmt.Println("Listening on: localhost:8080")
 
 	http.ListenAndServe(":8080", nil)
 }
