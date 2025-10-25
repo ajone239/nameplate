@@ -1,23 +1,21 @@
-@import 'tailwindcss';
-
 .dark {
-  --bg-color: #000;
-  --text-color: #eee;
-  --text-color-2: #aaa;
-  --place-holder-text-color: #666;
-  --menu-color: #fff;
-  --link-color: lightpink;
-  --main-border-color: lightgrey;
-  --hover-bg-color: #555;
-  --border-hover-color: #666;
-  --border-over-shadow: #777;
+    --bg-color: #000;
+    --text-color: #eee;
+    --text-color-2: #aaa;
+    --place-holder-text-color: #666;
+    --menu-color: #fff;
+    --link-color: lightpink;
+    --main-border-color: lightgrey;
+    --hover-bg-color: #555;
+    --border-hover-color: #666;
+    --border-over-shadow: #777;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: sans-serif;
-  background: var(--bg-color);
-  color: var(--text-color);
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
 }
-

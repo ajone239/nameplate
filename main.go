@@ -6,6 +6,8 @@ import (
 	"net/http"
 )
 
+var hits uint = 0
+
 func main() {
 	fs := http.FileServer(http.Dir("./web/build"))
 	http.Handle("/", fs)
@@ -24,6 +26,10 @@ type ApiResponse struct {
 }
 
 func dataHandler(w http.ResponseWriter, r *http.Request) {
-	response := ApiResponse{Message: "Hello from json API"}
+	hits += 1
+
+	message := fmt.Sprintf("Hello from json API: %d", hits)
+	response := ApiResponse{Message: message}
+
 	json.NewEncoder(w).Encode(response)
 }

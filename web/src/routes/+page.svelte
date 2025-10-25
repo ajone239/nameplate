@@ -12,15 +12,57 @@
     });
 </script>
 
-<div class="m-5">
-    <div>
-        <h1 class="text-5xl italic underline">Austin Jones</h1>
+<div class="dash-container">
+    <div class="whoami-container">
+        <h1 class="name-container">Austin Jones</h1>
 
-        <h4 class="text-m text-right italic">Software Engineer</h4>
+        <h4 class="title-container">Software Engineer</h4>
     </div>
-    <p>
-        Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation
-    </p>
 
-    <p>The message is: [{message}]</p>
+    <p>Hold for status component</p>
+
+    <p>Hold for theme toggle component</p>
+
+    <p>Hold for high score component</p>
+
+    <p>Hold for Wordle component</p>
+
+    <div class="bottom"><p>test api hit: [{message}]</p></div>
 </div>
+
+<style>
+    * {
+        border: red 1px solid;
+    }
+
+    .dash-container {
+        margin: 5px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr, 1fr, 20px;
+    }
+
+    .whoami-container {
+        flex: 1;
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .name-container {
+        font-size: xxx-large;
+        text-decoration: underline;
+    }
+
+    .title-container {
+        display: flex;
+        justify-content: flex-end;
+        font-style: italic;
+        color: grey;
+    }
+    .bottom {
+        display: flex;
+        justify-content: center;
+        grid-column: 1 / 4;
+        grid-row: 3 / 4;
+    }
+</style>
