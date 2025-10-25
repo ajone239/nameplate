@@ -1,4 +1,5 @@
 <script lang="ts">
+    import JobTitle from '$lib/components/JobTitle.svelte';
     import { onMount } from 'svelte';
 
     let message = $state('');
@@ -16,7 +17,7 @@
     <div class="whoami-container">
         <h1 class="name-container">Austin Jones</h1>
 
-        <h4 class="title-container">Software Engineer</h4>
+        <JobTitle />
     </div>
 
     <p>Hold for status component</p>
@@ -43,22 +44,19 @@
     }
 
     .whoami-container {
-        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         grid-column: 1 / 3;
         grid-row: 1 / 2;
     }
 
     .name-container {
-        font-size: xxx-large;
-        text-decoration: underline;
+        font-size: 5em;
+        border-bottom: white 3px solid;
+        margin: 10px;
     }
 
-    .title-container {
-        display: flex;
-        justify-content: flex-end;
-        font-style: italic;
-        color: grey;
-    }
     .bottom {
         display: flex;
         justify-content: center;
