@@ -1,5 +1,6 @@
 <script lang="ts">
     import JobTitle from '$lib/components/JobTitle.svelte';
+    import Status from '$lib/components/Status.svelte';
     import { onMount } from 'svelte';
 
     let message = $state('');
@@ -20,7 +21,7 @@
         <JobTitle />
     </div>
 
-    <p>Hold for status component</p>
+    <Status />
 
     <p>Hold for theme toggle component</p>
 
@@ -52,7 +53,7 @@
     }
 
     .name-container {
-        font-size: 5em;
+        font-size: 4.5em;
         border-bottom: white 3px solid;
         margin: 10px;
     }
