@@ -11,6 +11,18 @@
     --border-over-shadow: #777;
 }
 
+.light {
+    --bg-color: #eee;
+    --text-color: #333;
+    --place-holder-text-color: #888;
+    --menu-color: #000;
+    --link-color: purple;
+    --main-border-color: lightgrey;
+    --hover-bg-color: lightgrey;
+    --border-hover-color: #777;
+    --border-over-shadow: #999;
+}
+
 html,
 body {
     height: 100%;
