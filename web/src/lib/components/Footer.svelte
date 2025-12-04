@@ -37,15 +37,4 @@
     a {
         color: inherit;
     }
-    .rss-logo-containter {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-    .rss-logo {
-        all: initial;
-        margin-right: 5px;
-        height: 25px;
-        width: auto;
-    }
 </style>
