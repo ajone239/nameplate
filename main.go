@@ -13,8 +13,9 @@ var hits uint = 0
 
 func main() {
 	api := http.NewServeMux()
-	api.HandleFunc("/api/data", dataHandler)
-	http.Handle("/api/", api)
+	api.HandleFunc("/data", dataHandler)
+
+	http.Handle("/api/", http.StripPrefix("/api", api))
 
 	staticDir := "./web/build"
 	fs := http.FileServer(http.Dir(staticDir))
@@ -36,9 +37,9 @@ func main() {
 		fs.ServeHTTP(w, r)
 	})
 
-	fmt.Println("Listening on: localhost:8080")
+	fmt.Println("Listening on: localhost:80")
 
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":80", nil)
 }
 
 type ApiResponse struct {
