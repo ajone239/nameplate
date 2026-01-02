@@ -1,6 +1,7 @@
 package app
 
 import (
+	"github.com/ajone239/nameplate/internal/state"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -8,14 +9,16 @@ import (
 )
 
 type App struct {
-	hits      int
-	staticDir string
+	hits        int
+	staticDir   string
+	statusStore state.StatusStore
 }
 
 func NewApp(initHit int, staticDirPath string) *App {
 	return &App{
-		hits:      initHit,
-		staticDir: staticDirPath,
+		hits:        initHit,
+		staticDir:   staticDirPath,
+		statusStore: state.NewStatusStore(),
 	}
 }
 
@@ -35,7 +38,9 @@ func (a *App) Routes() *http.ServeMux {
 
 func (a *App) apiRoutes() *http.ServeMux {
 	api := http.NewServeMux()
-	api.HandleFunc("/data", a.HealthHandler)
+	api.HandleFunc("GET /data", a.HealthHandler)
+	api.HandleFunc("GET /status", a.GetStatusHandler)
+	api.HandleFunc("POST /status", a.PostStatusHandler)
 
 	return api
 }
