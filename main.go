@@ -9,11 +9,12 @@ import (
 	"strings"
 )
 
-var hits uint = 0
-
 func main() {
+
+	app := &App{hits: 0, incs: 3}
+
 	api := http.NewServeMux()
-	api.HandleFunc("/data", dataHandler)
+	api.HandleFunc("/data", app.dataHandler)
 
 	http.Handle("/api/", http.StripPrefix("/api", api))
 
@@ -42,14 +43,19 @@ func main() {
 	http.ListenAndServe(":80", nil)
 }
 
+type App struct {
+	hits int
+	incs int
+}
+
 type ApiResponse struct {
 	Message string `json:"message"`
 }
 
-func dataHandler(w http.ResponseWriter, r *http.Request) {
-	hits += 1
+func (app *App) dataHandler(w http.ResponseWriter, r *http.Request) {
+	app.hits += app.incs
 
-	message := fmt.Sprintf("Hello from json API: %d", hits)
+	message := fmt.Sprintf("Hello from json API: %d", app.hits)
 	response := ApiResponse{Message: message}
 
 	json.NewEncoder(w).Encode(response)
