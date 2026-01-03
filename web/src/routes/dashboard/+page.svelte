@@ -3,14 +3,33 @@
     import Status from '$lib/components/Status.svelte';
     import { onMount } from 'svelte';
 
+    let interval: number = 0;
+
     let message = $state('');
+    let status = $state('Away');
 
-    onMount(async () => {
+    const updateMessage = async () => {
         const res = await fetch('/api/data');
-
         const { message: message1 } = await res.json();
 
         message = message1;
+    };
+
+    const updateStatus = async () => {
+        const res = await fetch('/api/status');
+        const { status: new_status } = await res.json();
+
+        status = new_status;
+    };
+
+    const updateAll = async () => {
+        await updateMessage();
+        await updateStatus();
+    };
+
+    onMount(async () => {
+        await updateAll();
+        interval = setInterval(updateAll, 500);
     });
 </script>
 
@@ -21,7 +40,7 @@
         <JobTitle />
     </div>
 
-    <Status />
+    <Status {status} />
 
     <p>Hold for theme toggle component</p>
 

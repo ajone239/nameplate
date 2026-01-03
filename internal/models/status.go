@@ -22,7 +22,7 @@ func (s StatusState) String() string {
 		"Away",
 		"Busy",
 		"Free",
-		"HeadDown",
+		"Headdown",
 		"Meeting",
 	}[s]
 }
@@ -35,7 +35,7 @@ func FromString(s string) StatusState {
 		return Busy
 	case "Free":
 		return Free
-	case "HeadDown":
+	case "Headdown":
 		return HeadDown
 	case "Meeting":
 		return Meeting

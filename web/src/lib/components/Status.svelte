@@ -8,36 +8,20 @@
     let time = $state('the time :)');
     let date = $state('the date :)');
 
-    let out = $derived(status == 'out');
-    let free = $derived(status == 'free');
-    let busy = $derived(status == 'busy');
-    let working = $derived(status == 'working');
+    let out = $derived(status == 'Away');
+    let free = $derived(status == 'Free');
+    let busy = $derived(status == 'Busy');
+    let meeting = $derived(status == 'Meeting');
+    let working = $derived(status == 'Headdown');
 
-    let statusText = $derived.by(() => {
-        switch (status) {
-            case 'free':
-                return 'Chilling';
-            case 'busy':
-                return 'In a meeting';
-            case 'working':
-                return "Head down don't bother me";
-            case 'out':
-            default:
-                return 'Out of Office';
-        }
-    });
-
-    let i = 0;
-    const updateTimes = () => {
+    const updateTimes = async () => {
         const now = new Date();
         time = now.toLocaleTimeString();
         date = now.toLocaleDateString();
-
-        status = ['out', 'free', 'busy', 'working'][(i = (i + 1) % 4)];
     };
 
-    onMount(() => {
-        updateTimes;
+    onMount(async () => {
+        await updateTimes();
         interval = setInterval(updateTimes, 500);
     });
 
@@ -48,8 +32,8 @@
 
 <div class="component-container">
     <div class="status-container">
-        <div class={['circle', { out, free, working, busy }]}></div>
-        <p>{statusText}</p>
+        <div class={['circle', { out, free, meeting, working, busy }]}></div>
+        <p>{status}</p>
     </div>
 
     <div class="time-container">
@@ -88,7 +72,7 @@
         box-shadow: 0 0px 1px 1px lightgrey;
 
         &.out {
-            background: black;
+            background: grey;
             box-shadow: 0 0px 1px 1px lightgrey;
         }
         &.working {
@@ -102,6 +86,10 @@
         &.free {
             background: green;
             box-shadow: 0 0px 1px 1px lightgreen;
+        }
+        &.meeting {
+            background: red;
+            box-shadow: 0 0px 1px 1px pink;
         }
     }
 </style>
