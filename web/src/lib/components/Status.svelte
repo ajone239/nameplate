@@ -47,7 +47,7 @@
 
 <style>
     .component-container {
-        background: grey;
+        background: var(--bg2-color);
         border-radius: 10px;
         margin: 5px;
         padding: 10px;
@@ -56,7 +56,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-bottom: white 1px solid;
+        border-bottom: 1px solid;
     }
     .time-container {
         display: flex;

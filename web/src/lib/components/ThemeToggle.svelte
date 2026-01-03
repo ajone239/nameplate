@@ -1,20 +1,18 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import sun from "$lib/assets/sun.svg";
-    import moon from "$lib/assets/moon.svg";
+    import { onMount } from 'svelte';
+    import sun from '$lib/assets/sun.svg';
+    import moon from '$lib/assets/moon.svg';
 
-    import { currentTheme, THEMES } from "./ThemeToggle.svelte.js";
+    import { currentTheme, THEMES } from './ThemeToggle.svelte.js';
 
-    const STORAGE_KEY = "ajfm-theme";
-    const DARK_PREFERENCE = "(prefers-color-scheme: dark)";
+    const STORAGE_KEY = 'ajfm-theme';
+    const DARK_PREFERENCE = '(prefers-color-scheme: dark)';
 
     const prefersDarkThemes = () => window.matchMedia(DARK_PREFERENCE).matches;
 
     onMount(() => {
         applyTheme();
-        window
-            .matchMedia(DARK_PREFERENCE)
-            .addEventListener("change", applyTheme);
+        window.matchMedia(DARK_PREFERENCE).addEventListener('change', applyTheme);
     });
 
     const toggleTheme = () => {
@@ -23,10 +21,7 @@
         if (stored) {
             localStorage.removeItem(STORAGE_KEY);
         } else {
-            localStorage.setItem(
-                STORAGE_KEY,
-                prefersDarkThemes() ? THEMES.LIGHT : THEMES.DARK,
-            );
+            localStorage.setItem(STORAGE_KEY, prefersDarkThemes() ? THEMES.LIGHT : THEMES.DARK);
         }
 
         applyTheme();
@@ -34,11 +29,9 @@
 
     const applyTheme = () => {
         const preferredTheme = prefersDarkThemes() ? THEMES.DARK : THEMES.LIGHT;
-        currentTheme.theme =
-            localStorage.getItem(STORAGE_KEY) ?? preferredTheme;
+        currentTheme.theme = localStorage.getItem(STORAGE_KEY) ?? preferredTheme;
 
-        currentTheme.theme =
-            localStorage.getItem(STORAGE_KEY) ?? preferredTheme;
+        currentTheme.theme = localStorage.getItem(STORAGE_KEY) ?? preferredTheme;
 
         if (currentTheme.theme == THEMES.DARK) {
             document.body.classList.remove(THEMES.LIGHT);
@@ -63,7 +56,7 @@
     img {
         all: unset;
         background: var(--bg-color);
-        width: 25px;
-        height: auto;
+        width: var(--size, 25px);
+        height: var(--size, 25px);
     }
 </style>

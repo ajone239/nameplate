@@ -1,6 +1,9 @@
 .dark {
     --bg-color: #000;
+    --bg2-color: grey;
     --text-color: #eee;
+    text-decoration-color: #eee;
+    border-color: #eee;
     --text-color-2: #aaa;
     --place-holder-text-color: #666;
     --menu-color: #fff;
@@ -13,7 +16,10 @@
 
 .light {
     --bg-color: #eee;
+    --bg2-color: lightgrey;
+    text-decoration-color: #333;
     --text-color: #333;
+    border-color: #333;
     --place-holder-text-color: #888;
     --menu-color: #000;
     --link-color: purple;

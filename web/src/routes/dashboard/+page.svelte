@@ -1,6 +1,7 @@
 <script lang="ts">
     import JobTitle from '$lib/components/JobTitle.svelte';
     import Status from '$lib/components/Status.svelte';
+    import ThemeToggle from '$lib/components/ThemeToggle.svelte';
     import { onMount } from 'svelte';
 
     let interval: number = 0;
@@ -42,7 +43,9 @@
 
     <Status {status} />
 
-    <p>Hold for theme toggle component</p>
+    <div class="toggle-container">
+        <ThemeToggle --size="50px" />
+    </div>
 
     <p>Hold for high score component</p>
 
@@ -52,15 +55,13 @@
 </div>
 
 <style>
-    * {
-        border: red 1px solid;
-    }
-
     .dash-container {
         margin: 5px;
         display: grid;
+        height: 99vh;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: 1fr, 1fr, 20px;
+        grid-template-rows: 1fr, 1fr, 15px;
+        gap: 5px;
     }
 
     .whoami-container {
@@ -72,9 +73,19 @@
     }
 
     .name-container {
-        font-size: 4.5em;
-        border-bottom: white 3px solid;
+        font-size: 4.85em;
+        border-bottom: 3px solid;
         margin: 10px;
+    }
+
+    .toggle-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        border: 2px solid;
+        margin: 10px;
+        padding: 10px;
     }
 
     .bottom {

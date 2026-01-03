@@ -38,14 +38,13 @@
 
 <style>
     .title-container {
-        border: red 1px solid;
         display: flex;
         justify-content: flex-end;
         margin: 10px;
     }
     .title {
         all: unset;
-        font-size: 1.5em;
+        font-size: 1.85em;
         font-style: italic;
         color: grey;
     }
