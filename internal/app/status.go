@@ -4,14 +4,12 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"time"
 
 	"github.com/ajone239/nameplate/internal/models"
 )
 
 type statusResponse struct {
-	Status  string `json:"status"`
-	TimeSet string `json:"time"`
+	Status string `json:"status"`
 }
 
 type statusRequest struct {
@@ -21,13 +19,13 @@ type statusRequest struct {
 func (app *App) GetStatusHandler(w http.ResponseWriter, _ *http.Request) {
 	status, err := app.statusStore.GetStatus()
 	if err != nil {
+		log.Println(err)
 		http.Error(w, "internal server error", http.StatusInternalServerError)
 		return
 	}
 
 	statusResponse := &statusResponse{
-		Status:  status.Status.String(),
-		TimeSet: status.TimeSet.UTC().String(),
+		Status: status.Status.String(),
 	}
 
 	json.NewEncoder(w).Encode(statusResponse)
@@ -50,8 +48,7 @@ func (app *App) PostStatusHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	status := models.Status{
-		Status:  models.FromString(input.Status),
-		TimeSet: time.Now(),
+		Status: models.FromString(input.Status),
 	}
 
 	err = app.statusStore.SetStatus(&status)
@@ -62,8 +59,7 @@ func (app *App) PostStatusHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	statusResponse := &statusResponse{
-		Status:  status.Status.String(),
-		TimeSet: status.TimeSet.UTC().String(),
+		Status: status.Status.String(),
 	}
 
 	w.Header().Set("Content-Type", "application/json")

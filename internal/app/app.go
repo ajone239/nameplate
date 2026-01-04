@@ -1,11 +1,16 @@
 package app
 
 import (
-	"github.com/ajone239/nameplate/internal/state"
+	"database/sql"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/ajone239/nameplate/internal/state"
+	_ "github.com/ncruces/go-sqlite3/driver"
+	_ "github.com/ncruces/go-sqlite3/embed"
 )
 
 type App struct {
@@ -15,10 +20,19 @@ type App struct {
 }
 
 func NewApp(initHit int, staticDirPath string) *App {
+	db, err := sql.Open("sqlite3", "file:test.db")
+	if err != nil {
+		log.Fatal(err)
+	}
+	db.SetMaxOpenConns(1)
+
+	statusStore := state.NewSqliteStatusStore(db)
+	statusStore.InitStore()
+
 	return &App{
 		hits:        initHit,
 		staticDir:   staticDirPath,
-		statusStore: state.NewStatusStore(),
+		statusStore: statusStore,
 	}
 }
 

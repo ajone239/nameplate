@@ -1,10 +1,7 @@
 package models
 
-import "time"
-
 type Status struct {
-	Status  StatusState `json:"status"`
-	TimeSet time.Time   `json:"time"`
+	Status StatusState `json:"status"`
 }
 
 type StatusState int
