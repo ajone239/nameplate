@@ -36,7 +36,7 @@ func (s *SqliteStatusStore) InitStore() (bool, error) {
 		return false, err
 	}
 
-	sqlInsert := `INSERT INTO status (id, status_num)
+	sqlInsert := `INSERT OR IGNORE INTO status (id, status_num)
 			VALUES (0, ?);`
 
 	_, err = s.db.Exec(sqlInsert, models.Away)
