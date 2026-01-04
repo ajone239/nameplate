@@ -14,7 +14,7 @@ type StatusStore interface {
 
 func NewStatusStore() StatusStore {
 	return &JsonStatusStore{
-		path: "status.json",
+		path: "data/status.json",
 	}
 }
 
