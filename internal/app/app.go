@@ -16,7 +16,7 @@ import (
 type App struct {
 	hits        int
 	staticDir   string
-	statusStore state.StatusStore
+	StatusStore state.StatusStore
 }
 
 func NewApp(initHit int, staticDirPath string) *App {
@@ -32,7 +32,7 @@ func NewApp(initHit int, staticDirPath string) *App {
 	return &App{
 		hits:        initHit,
 		staticDir:   staticDirPath,
-		statusStore: statusStore,
+		StatusStore: statusStore,
 	}
 }
 

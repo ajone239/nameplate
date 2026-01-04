@@ -17,7 +17,7 @@ type statusRequest struct {
 }
 
 func (app *App) GetStatusHandler(w http.ResponseWriter, _ *http.Request) {
-	status, err := app.statusStore.GetStatus()
+	status, err := app.StatusStore.GetStatus()
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "internal server error", http.StatusInternalServerError)
@@ -51,7 +51,7 @@ func (app *App) PostStatusHandler(w http.ResponseWriter, r *http.Request) {
 		Status: models.FromString(input.Status),
 	}
 
-	err = app.statusStore.SetStatus(&status)
+	err = app.StatusStore.SetStatus(&status)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Status Save Failed", http.StatusInternalServerError)
