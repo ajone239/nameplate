@@ -1,7 +1,6 @@
 package state_test
 
 import (
-	"database/sql"
 	"testing"
 
 	"github.com/ajone239/nameplate/internal/models"
@@ -10,18 +9,6 @@ import (
 	_ "github.com/ncruces/go-sqlite3/driver"
 	_ "github.com/ncruces/go-sqlite3/embed"
 )
-
-func newTestDB(t *testing.T) *sql.DB {
-	t.Helper()
-
-	db, err := sql.Open("sqlite3", ":memory:")
-	if err != nil {
-		t.Fatalf("failed to open db: %v", err)
-	}
-
-	db.SetMaxOpenConns(1)
-	return db
-}
 
 func TestSqliteStatusStore_InitStore(t *testing.T) {
 	db := newTestDB(t)
