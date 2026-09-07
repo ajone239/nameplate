@@ -10,6 +10,10 @@
     + [ ] API post
     + [ ] hook into UI
     + [ ] hook into Dash
+- [ ] redesign
+- [ ] cli
+    + [ ] path
+    + [ ] port
 - [ ] high scores
 - [ ] wordle
 - [ ] login

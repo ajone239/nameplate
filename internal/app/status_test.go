@@ -52,7 +52,8 @@ func TestGetStatusHandler_OK(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/status", nil)
 	rec := httptest.NewRecorder()
 
-	a.GetStatusHandler(rec, req)
+	handler := app.GetStatusHandler(a)
+	handler(rec, req)
 
 	if rec.Code != http.StatusOK {
 		t.Fatalf("expected 200, got %d", rec.Code)
@@ -78,7 +79,8 @@ func TestGetStatusHandler_Error(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/status", nil)
 	rec := httptest.NewRecorder()
 
-	a.GetStatusHandler(rec, req)
+	handler := app.GetStatusHandler(a)
+	handler(rec, req)
 
 	if rec.Code != http.StatusInternalServerError {
 		t.Fatalf("expected 500, got %d", rec.Code)
@@ -95,7 +97,8 @@ func TestPostStatusHandler_OK(t *testing.T) {
 
 	rec := httptest.NewRecorder()
 
-	a.PostStatusHandler(rec, req)
+	handler := app.PostStatusHandler(a)
+	handler(rec, req)
 
 	if rec.Code != http.StatusCreated {
 		t.Fatalf("expected 201, got %d", rec.Code)
@@ -118,7 +121,8 @@ func TestPostStatusHandler_BadContentType(t *testing.T) {
 	req := httptest.NewRequest(http.MethodPost, "/status", nil)
 	rec := httptest.NewRecorder()
 
-	a.PostStatusHandler(rec, req)
+	handler := app.PostStatusHandler(a)
+	handler(rec, req)
 
 	if rec.Code != http.StatusUnsupportedMediaType {
 		t.Fatalf("expected 415, got %d", rec.Code)
@@ -138,7 +142,8 @@ func TestPostStatusHandler_InvalidJSON(t *testing.T) {
 
 	rec := httptest.NewRecorder()
 
-	a.PostStatusHandler(rec, req)
+	handler := app.PostStatusHandler(a)
+	handler(rec, req)
 
 	if rec.Code != http.StatusBadRequest {
 		t.Fatalf("expected 400, got %d", rec.Code)
@@ -157,7 +162,8 @@ func TestPostStatusHandler_StoreError(t *testing.T) {
 
 	rec := httptest.NewRecorder()
 
-	a.PostStatusHandler(rec, req)
+	handler := app.PostStatusHandler(a)
+	handler(rec, req)
 
 	if rec.Code != http.StatusInternalServerError {
 		t.Fatalf("expected 500, got %d", rec.Code)

@@ -36,6 +36,10 @@ func NewApp(initHit int, staticDirPath string) *App {
 	}
 }
 
+func (a *App) GetStatusStore() state.StatusStore {
+	return a.StatusStore
+}
+
 func (a *App) Routes() *http.ServeMux {
 	mux := http.NewServeMux()
 
@@ -53,8 +57,8 @@ func (a *App) Routes() *http.ServeMux {
 func (a *App) apiRoutes() *http.ServeMux {
 	api := http.NewServeMux()
 	api.HandleFunc("GET /data", a.HealthHandler)
-	api.HandleFunc("GET /status", a.GetStatusHandler)
-	api.HandleFunc("POST /status", a.PostStatusHandler)
+	api.HandleFunc("GET /status", GetStatusHandler(a))
+	api.HandleFunc("POST /status", PostStatusHandler(a))
 
 	return api
 }
