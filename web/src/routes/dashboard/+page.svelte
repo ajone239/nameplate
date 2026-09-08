@@ -34,31 +34,38 @@
     });
 </script>
 
-<div class="dash-container">
-    <div class="whoami-container">
-        <h1 class="name-container">Austin Jones</h1>
+<div class="container">
+    <div class="dash-container">
+        <div class="whoami-container">
+            <h1 class="name-container">Austin Jones</h1>
 
-        <JobTitle />
+            <JobTitle />
+        </div>
+
+        <Status {status} />
+
+        <div class="toggle-container">
+            <ThemeToggle --size="50px" />
+        </div>
+
+        <p>Hold for Wordle component</p>
+
+        <div class="bottom"><p>test api hit: [{message}]</p></div>
     </div>
-
-    <Status {status} />
-
-    <div class="toggle-container">
-        <ThemeToggle --size="50px" />
-    </div>
-
-    <p>Hold for high score component</p>
-
-    <p>Hold for Wordle component</p>
-
-    <div class="bottom"><p>test api hit: [{message}]</p></div>
 </div>
 
 <style>
-    .dash-container {
-        margin: 5px;
+    .container {
+        padding: 10px;
         display: grid;
-        height: 99vh;
+        height: 97vh;
+        background: red;
+    }
+
+    .dash-container {
+        display: grid;
+        background: var(--bg-color);
+        border-radius: 10px;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 1fr, 1fr, 15px;
         gap: 5px;
@@ -68,12 +75,12 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        grid-column: 1 / 3;
+        grid-column: 1 / 4;
         grid-row: 1 / 2;
     }
 
     .name-container {
-        font-size: 4.85em;
+        font-size: 6.85em;
         border-bottom: 3px solid;
         margin: 10px;
     }
